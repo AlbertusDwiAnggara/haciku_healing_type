@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo.png">
+  <title>Haciku - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #E6A9C1;
+      --hover-primary: #ff589b;
+      --secondary: #fcc900;
+      --text-main: #2C2C2C;
+      --text-heading: #3B4A6B;
+      --bg-soft: #F8F7FB;
+    }
+
+    body {
+      color: var(--text-main);
+    }
+
+    .bg-heal {
+      background: linear-gradient(135deg, #F5E9FF 0%, #FFF0F6 50%, #E8F7FF 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+    }
+
+    .fade-up {
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all .6s ease;
+    }
+
+    .fade-up.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--text-heading);
+    }
+
+    p,
+    .text-muted {
+      color: var(--text-main);
+    }
+
+    a,
+    .nav-link {
+      color: var(--text-heading);
+    }
+
+    a:hover,
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: white;
+      transform: scale(1);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: #F8F7FB;
+      transform: scale(1.1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.192), 0 1px 2px rgba(0, 0, 0, 0.192);
+    }
+
+    .btn-outline {
+      color: var(--text-heading);
+      background: transparent;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+      transform: scale(1.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-header {
+      cursor: pointer;
+      padding: 1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .accordion-header:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 1rem;
+    }
+
+    .accordion-content.open {
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-heal text-[color:var(--text-main)]">
+
+  <header class="w-full glass shadow sticky top-0 z-40 p-1">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center shadow-sm">
+            <img src="assets/img/logo.png" alt="Haciku logo" class="w-full h-full object-contain">
+          </div>
+          <span class="text-2xl font-semibold text-[color:var(--text-heading)]">Haciku</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-lg">
+          <a href="home.html" class="font-medium text-[color:var(--primary)] transition">Home</a>
+          <a href="about.html"
+            class="nav-link text-[color:var(--text-main)] hover:text-[color:var(--primary)] transition">About Us</a>
+          <a href="quiz.html"
+            class="nav-link text-[color:var(--text-main)] hover:text-[color:var(--primary)] transition">Quiz</a>
+        </nav>
+
+        <button id="burger" aria-label="menu"
+          class="md:hidden flex items-center justify-center w-10 h-10 rounded-md focus:outline-none hover:bg-white/50 transition">
+          <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#8AA9C4"
+            stroke-width="2" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="md:hidden hidden menu-border border-t glass">
+      <div class="px-4 pb-4 space-y-2">
+        <a href="home.html" class="block py-2 px-3 rounded bg-white/40 font-medium text-[color:var(--primary)]">Home</a>
+        <a href="about.html" class="block py-2 px-3 rounded hover:bg-white/40">About Us</a>
+        <a href="quiz.html" class="block py-2 px-3 rounded hover:bg-white/40">Quiz</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="h-screen flex flex-col items-center justify-center text-center bg-heal">
+    <img src="assets/img/nalatico.png" alt="Nalatico Logo" class="w-64 md:w-80 fade-up" id="nalaticoLogo">
+  </section>
+
+  <main class="flex-1">
+    <section id="hero" class="py-10">
+      <div class="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+        <div class="inline-block p-6 rounded-2xl glass shadow-lg fade-up" id="heroBox">
+          <img src="assets/img/logo.png" alt="Haciku" class="mx-auto w-28 h-28 object-contain mb-4">
+          <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--text-heading)] mb-3">
+            Selamat Datang di <span class="text-[color:var(--primary)]">Haciku</span>
+          </h1>
+          <p class="text-[color:var(--text-main)] max-w-2xl mx-auto mb-6 leading-relaxed">
+            Platform interaktif untuk mengenali <strong>healing culture</strong> dan tipe healing-mu berdasarkan jejak
+            suasana hati. Desain estetik, nuansa pastel, dan pengalaman yang menenangkan.
+          </p>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="py-10">
+      <div class="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 lg:px-8 grid md:grid-cols-2 gap-6">
+        <div class="glass p-6 rounded-xl shadow fade-up text-center">
+          <img src="assets/img/logo.png" alt="Haciku" class="mx-auto w-28 h-28 object-contain mb-4">
+          <h3 class="text-xl font-bold text-[color:var(--primary)] mb-2">Cek Healing Style</h3>
+          <p class="mb-4">Jawab 10 pertanyaan dan temukan gaya healing <br>yang paling cocok untukmu.</p>
+          <a href="quiz.html" class="px-5 py-2 rounded-full btn-primary inline-block">Mulai Sekarang</a>
+        </div>
+        <div class="glass p-6 rounded-xl shadow fade-up text-center">
+          <img src="assets/img/logo.png" alt="Haciku" class="mx-auto w-28 h-28 object-contain mb-4">
+          <h3 class="text-xl font-bold text-[color:var(--primary)] mb-2">Mood Tracker</h3>
+          <p class="mb-4">Pantau suasana hatimu dan lihat rekomendasi <br>healing yang sesuai.</p>
+          <button class="px-5 py-2 rounded-full btn-primary cursor-not-allowed opacity-80">Segera Hadir</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <div class="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 fade-up">
+        <div class="glass p-6 rounded-xl shadow-sm">
+          <h2 class="text-2xl font-semibold mb-4 text-[color:var(--text-heading)]">Tentang Project</h2>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <ion-icon name="chevron-down-outline"></ion-icon>
+                Apa itu healing culture?
+              </div>
+              <div class="accordion-content">
+                <p>Dalam konteks kehidupan masyarakat urban, fenomena ini dikenal dengan istilah “healing culture”, yaitu
+                  budaya penyembuhan diri melalui pendekatan spiritual, sosial, dan lingkungan.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <ion-icon name="chevron-down-outline"></ion-icon>
+                Apa tujuan penelitian dan web ini?
+              </div>
+              <div class="accordion-content">
+                <p>Penelitian ini bertujuan untuk menganalisis relevansi “healing culture” terhadap kesehatan mental
+                  masyarakat kota serta meninjau peluang integrasi antara pendekatan budaya dan sistem medis formal.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <ion-icon name="chevron-down-outline"></ion-icon>
+                Apa pentingnya healing culture?
+              </div>
+              <div class="accordion-content">
+                <p>“Healing culture” dapat menjadi strategi pendukung kesehatan mental masyarakat urban jika
+                  diintegrasikan dengan pendekatan psikologis dan kebijakan publik yang berkelanjutan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div
+      class="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center text-sm text-[color:var(--text-main)]/80 bg-transparent">
+      © 2025 Haciku Team — Healing Culture Project
+    </div>
+  </footer>
+
+  <script>
+    // Navbar mobile toggle
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerIcon = document.getElementById('burgerIcon');
+    let menuOpen = false;
+
+    burger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden');
+
+      burgerIcon.innerHTML = menuOpen
+        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
+        : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+    });
+
+    // Fade-up animation
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), 120 * i);
+      });
+    });
+
+    // Accordion Functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.classList.toggle('open');
+
+        if (content.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haciku</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #F7A8B8;
+      --btn-color: #ff3f3f;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background-color: #FFF6F9;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-size: cover;
+      background-position: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .character {
+      width: 180px;
+      max-width: 45%;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease-out forwards 0.8s;
+    }
+
+    p {
+        font-size: 100px;
+    }
+
+    .text {
+      font-size: clamp(1.6rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 1s ease-out forwards 1.2s;
+      text-align: center;
+      margin-top: -1rem;
+    }
+
+    .next-btn {
+      background-color: var(--btn-color);
+      color: white;
+      border-radius: 15px;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative; 
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeUp 1s ease-out forwards 1.8s;
+      transition: all 0.2s ease;
+    }
+
+    .next-btn-2 {
+      background-color: var(--btn-color);
+      color: white;
+      border-radius: 15px;
+      padding: 1rem 2.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative; 
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeUp 1s ease-out forwards 1.8s;
+      transition: all 0.2s ease;
+    }
+
+    .next-btn:hover {
+      transform: scale(1.05);
+      background-color: #fd7979;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scene1" class="scene" style="background-image: url('assets/img/bg_scene.png');">
+    <h1 class="text">Aku sedih, butuh healing 😢</h1>
+    <img src="assets/img/char_sad.png" alt="karakter sedih" class="character" style="width: 300px;" class="mx-auto"/>
+    <button class="next-btn" onclick="nextScene()">Tap in here</button>
+  </div>
+
+  <div id="scene2" class="scene hidden" style="background-image: url('assets/img/bg_scene.png');">
+    <h1 class="text">tapi healing gimana ya?🤔</h1>
+    <img src="assets/img/char_think.png" alt="karakter berpikir" class="character" style="width: 220px;" class="mx-auto" />
+    <button class="next-btn-2" onclick="goHome()">Next✨</button>
+  </div>
+
+  <script>
+    function nextScene() {
+      const scene1 = document.getElementById('scene1');
+      const scene2 = document.getElementById('scene2');
+      scene1.classList.add('hidden');
+      scene2.classList.remove('hidden');
+    }
+
+    function goHome() {
+      window.location.href = "home.html"; 
+    }
+  </script>
+
+</body>
+</html>

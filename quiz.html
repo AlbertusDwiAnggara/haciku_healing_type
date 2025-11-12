@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <title>Haciku - Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #E6A9C1;
+      --hover-primary: #ff589b;
+      --secondary: #8AA9C4;
+      --text-main: #2C2C2C;
+      --text-heading: #3B4A6B;
+      --bg-soft: #F8F7FB;
+    }
+
+    body {
+      background-color: var(--bg-soft);
+      color: var(--text-main);
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #eee;
+      color: var(--text-main);
+    }
+
+    a:hover,
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border-radius: 9999px;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--hover-primary);
+      transform: scale(1.05);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    .bg-heal {
+      background: linear-gradient(135deg, #fffafc 0%, #f3ecf8 100%);
+    }
+
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.3s ease;
+    }
+
+    .fade-enter.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-heal">
+
+  <!-- HEADER -->
+  <header class="w-full glass shadow sticky top-0 z-40 p-1">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center shadow-sm">
+            <img src="assets/img/logo.png" alt="Haciku logo" class="w-full h-full object-contain">
+          </div>
+          <span class="text-2xl font-semibold text-[color:var(--text-heading)]">Haciku</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-lg">
+          <a href="home.html" class="nav-link text-[color:var(--text-main)] hover:text-[color:var(--primary)] transition">Home</a>
+          <a href="about.html"
+            class="nav-link text-[color:var(--text-main)] hover:text-[color:var(--primary)] transition">About Us</a>
+          <a href="quiz.html"
+            class="font-medium text-[color:var(--primary)] transition">Quiz</a>
+        </nav>
+
+        <button id="burger" aria-label="menu"
+          class="md:hidden flex items-center justify-center w-10 h-10 rounded-md focus:outline-none hover:bg-white/50 transition">
+          <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#8AA9C4"
+            stroke-width="2" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="md:hidden hidden border-t glass">
+      <div class="px-4 pb-4 space-y-2">
+        <a href="index.html"
+          class="block py-2 px-3 rounded bg-white/40 font-medium text-[color:var(--primary)]">Home</a>
+        <a href="about.html" class="block py-2 px-3 rounded hover:bg-white/40">About Us</a>
+        <a href="quiz.html" class="block py-2 px-3 rounded hover:bg-white/40">Quiz</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 flex items-start justify-center py-10">
+    <div class="w-full max-w-3xl px-4">
+      <div class="glass p-6 rounded-2xl shadow-md">
+        <h2 class="text-2xl font-bold text-[var(--text-heading)] mb-2 text-center">Quiz Healing Culture</h2>
+        <p class="text-sm text-[var(--text-main)] mb-6 text-center">
+          Temukan tipe healing kamu berdasarkan suasana hati 🌸
+        </p>
+
+        <div class="w-full bg-white/40 rounded-full h-3 overflow-hidden mb-4">
+          <div id="progressBar" class="h-3 bg-[var(--primary)] w-0 transition-all duration-300"></div>
+        </div>
+
+        <div id="questionBox" class="fade-enter"></div>
+
+        <div class="mt-4 flex items-center justify-between">
+          <div id="questionCount" class="text-sm text-[var(--text-main)]">Pertanyaan 1 / 10</div>
+          <button id="submitBtn" class="btn-primary hidden">Kirim</button>
+        </div>
+
+        <div id="resultBox" class="mt-6 hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="max-w-5xl mx-auto px-4 text-center text-sm text-[color:var(--text-main)]/80">
+      © 2025 Haciku Team — Healing Culture Project
+    </div>
+  </footer>
+
+  <script>
+    // === MENU BURGER ===
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerIcon = document.getElementById('burgerIcon');
+    let menuOpen = false;
+
+    burger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden');
+      burgerIcon.innerHTML = menuOpen
+        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
+        : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+    });
+
+    // === DATA QUIZ ===
+    const questions = [
+      { q: "Saat kamu merasa lelah secara mental, hal pertama yang ingin kamu lakukan adalah…", a: ["Jalan-jalan ke alam terbuka", "Mendengarkan musik atau melukis", "Menyendiri dan refleksi diri", "Ngobrol bareng dengan teman dekat"], map: [0, 1, 2, 3] },
+      { q: "Kamu lebih sering merasa tenang saat…", a: ["Berada di tempat yang sunyi dan hijau", "Mengekspresikan perasaan lewat suatu karya", "Bermeditasi atau berdoa", "Menghabiskan waktu bersama orang lain"], map: [0, 1, 2, 3] },
+      { q: "Dalam menghadapi masalah pribadi, kamu biasanya…", a: ["Menenangkan diri dulu sebelum bertindak", "Menuangkannya dalam tulisan atau seni", "Berdoa dan mencari makna di baliknya", "Cerita dan minta saran dari orang yang dipercaya"], map: [0, 1, 2, 3] },
+      { q: "Aktivitas yang paling menggambarkan “healing” versimu adalah…", a: ["Piknik atau traveling ke tempat baru", "Membuat jurnal atau karya kreatif", "Meditasi, yoga, atau ibadah", "Nongkrong santai sambil berbagi cerita"], map: [0, 1, 2, 3] },
+      { q: "Ketika merasa stres karena pekerjaan atau sekolah, kamu lebih suka…", a: ["Liburan singkat", "Menulis atau menggambar", "Menyepi sementara", "Ketemu teman dan tertawa"], map: [0, 1, 2, 3] },
+      { q: "Kamu paling merasa “hidup kembali” ketika…", a: ["Menyatu dengan alam", "Berkreasi dan mengekspresikan diri", "Mendekatkan diri secara spiritual", "Dikelilingi energi positif dari orang lain"], map: [0, 1, 2, 3] },
+      { q: "Saat sedang banyak tekanan atau beban pikiran, kamu lebih suka…", a: ["Menghirup udara segar atau berjalan ke taman", "Menuangkan isi hati lewat tulisan, musik, atau gambar", "Menenangkan diri dengan doa, refleksi, atau meditasi", "Menghabiskan waktu bersama orang terdekat"], map: [0, 1, 2, 3] },
+      { q: "Tempat ideal untuk “healing” versimu adalah…", a: ["Pegunungan atau pantai", "Kafe estetik atau studio seni", "Ruang ibadah atau kamar pribadi yang tenang", "Tempat ramai dengan suasana hangat dan bersosialisasi"], map: [0, 1, 2, 3] },
+      { q: "Kalau sedang sedih, kamu biasanya mencari kekuatan dari…", a: ["Alam dan udara segar", "Aktivitas kreatif yang menenangkan", "Keyakinan dan makna spiritual", "Kehangatan orang-orang di sekitarmu"], map: [0, 1, 2, 3] },
+      { q: "Menurutmu, healing sejati terjadi ketika…", a: ["Kamu bisa berdamai dengan alam dan dirimu sendiri", "Emosimu tersalurkan dengan cara kreatif", "Jiwamu tenang dan hatimu terasa ringan", "Kamu merasa didukung dan diterima oleh orang lain"], map: [0, 1, 2, 3] }
+    ];
+
+    const questionBox = document.getElementById('questionBox');
+    const progressBar = document.getElementById('progressBar');
+    const questionCount = document.getElementById('questionCount');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultBox = document.getElementById('resultBox');
+    let answers = [], idx = 0;
+
+    function renderQuestion(i) {
+      const item = questions[i];
+      questionBox.classList.remove('show');
+      setTimeout(() => {
+        questionBox.innerHTML = `
+          <div>
+            <h3 class="text-lg font-semibold text-[var(--text-heading)] mb-2">Pertanyaan ${i + 1}</h3>
+            <p class="mb-4">${item.q}</p>
+            <div class="grid gap-3">
+              ${item.a.map((opt, k) => `
+                <button class="option px-4 py-3 rounded-xl border border-[var(--primary)] hover:bg-[var(--hover-primary)] hover:text-white transition" data-choice="${k}">${opt}</button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        document.querySelectorAll('.option').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (answers[i] !== undefined) return;
+            answers[i] = item.map[Number(btn.dataset.choice)];
+            if (i < questions.length - 1) {
+              idx++;
+              updateProgress();
+              renderQuestion(idx);
+            } else {
+              updateProgress();
+              submitBtn.classList.remove('hidden');
+              questionCount.textContent = `Selesai — siap kirim hasil`;
+            }
+          });
+        });
+        setTimeout(() => questionBox.classList.add('show'), 10);
+      }, 150);
+      questionCount.textContent = `Pertanyaan ${i + 1} / ${questions.length}`;
+    }
+
+    function updateProgress() {
+      const filled = answers.filter(a => a !== undefined).length;
+      progressBar.style.width = Math.round((filled / questions.length) * 100) + '%';
+    }
+
+    renderQuestion(idx);
+
+    submitBtn.addEventListener('click', () => {
+      const counts = [0, 0, 0, 0];
+      answers.forEach(a => { if (typeof a === 'number') counts[a]++; });
+      const maxIdx = counts.indexOf(Math.max(...counts));
+      const labels = ['Nature Healer', 'Creative Healer', 'Spiritual Healer', 'Social Healer'];
+      const resultImages = ['hasil_nature.png', 'hasil_creative.png', 'hasil_spiritual.png', 'hasil_social.png'];
+
+      resultBox.innerHTML = `
+        <div class="text-center">
+          <h3 class="text-2xl font-bold text-[var(--text-heading)] mb-3">Tipe Healing Kamu:</h3>
+          <img id="resultImage" src="assets/img/${resultImages[maxIdx]}" alt="Hasil Kuis" class="mx-auto rounded-2xl shadow-lg w-full md:w-2/3 mb-4">
+          <div class="flex flex-wrap justify-center gap-3">
+            <a download="${labels[maxIdx].replace(/\s/g, '_')}.png"
+              href="assets/img/${resultImages[maxIdx]}"
+              class="btn-primary">Download Hasil (PNG)</a>
+            <button onclick="location.reload()" class="px-5 py-2 bg-white text-[var(--text-heading)] rounded-full shadow hover:bg-[var(--hover-primary)]/30">Ulangi Kuis</button>
+          </div>
+        </div>
+      `;
+      resultBox.classList.remove('hidden');
+      questionBox.innerHTML = '';
+      submitBtn.classList.add('hidden');
+      questionCount.textContent = 'Hasil';
+    });
+  </script>
+</body>
+
+</html>

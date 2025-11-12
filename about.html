@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <title>Haciku - About Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #E6A9C1;
+      --hover-primary: #e1306c;
+      --black-logo: #131313;
+      --secondary: #8AA9C4;
+      --text-main: #2C2C2C;
+      --text-heading: #3B4A6B;
+      --bg-soft: #F8F7FB;
+    }
+
+    .bg-heal {
+      background: linear-gradient(135deg, #F5E9FF 0%, #FFF0F6 50%, #E8F7FF 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+    }
+
+    .pop-img {
+      transition: transform .28s ease;
+    }
+
+    .fade-up {
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all .6s ease;
+    }
+
+    .fade-up.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    body {
+      color: var(--text-main);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--text-heading);
+    }
+
+    p {
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--text-heading);
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-heal text-[color:var(--text-main)]">
+
+  <header class="w-full glass shadow sticky top-0 z-40 p-1">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+            <img src="assets/img/logo.png" alt="Haciku logo" class="w-full h-full object-contain">
+          </div>
+          <span class="text-2xl font-semibold text-[color:var(--text-heading)]">Haciku</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-lg">
+          <a href="home.html" class="hover:text-[color:var(--primary)] transition">Home</a>
+          <a href="about.html" class="font-medium text-[color:var(--primary)] transition">About Us</a>
+          <a href="quiz.html" class="hover:text-[color:var(--primary)] transition">Quiz</a>
+        </nav>
+
+        <button id="burgerAbout" aria-label="Menu"
+          class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/50 transition">
+          <svg id="burgerIconAbout" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+            stroke="#8AA9C4" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenuAbout" class="hidden md:hidden border-t border-white/40 glass">
+      <div class="px-4 py-3 space-y-2">
+        <a href="index.html" class="block py-2 px-3 rounded hover:bg-white/40">Home</a>
+        <a href="about.html" class="block py-2 px-3 rounded bg-white/40 font-medium text-[color:var(--primary)]">About Us</a>
+        <a href="quiz.html" class="block py-2 px-3 rounded hover:bg-white/40">Quiz</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <section class="py-10">
+      <div class="max-w-5xl mx-auto px-4 md:px-6">
+        <div class="bg-white/60 glass p-6 rounded-xl text-center shadow-sm">
+          <h1 class="text-3xl font-bold mb-2">
+            Kenali Tim <span class="text-[color:var(--primary)]">Haciku</span>
+          </h1>
+          <p class="mb-6">
+            Preycya, Serafim, dan Stephanie — tim yang menyatukan kreativitas dan empati
+            untuk membuat pengalaman healing yang hangat.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow p-4 text-center fade-up">
+              <div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-3">
+                <img src="assets/img/preycya.jpg" alt="Preycya" class="w-full h-full object-cover pop-img">
+              </div>
+              <h3 class="text-xl font-bold">Preycya</h3>
+              <p class="text-sm opacity-90">Preycya Anggreani Parinding Gala<br>SMA Kristen Petra 5</p>
+              <div class="flex items-center justify-center gap-4 mt-3 text-[color:var(--secondary)] text-xl">
+                <a href="https://instagram.com/" target="_blank" aria-label="Instagram"
+                  class="hover:text-[color:var(--hover-primary)] transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/" target="_blank" aria-label="Twitter/X"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-x-twitter"></i></a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-4 text-center fade-up">
+              <div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-3">
+                <img src="assets/img/serafim.jpg" alt="Serafim" class="w-full h-full object-cover pop-img">
+              </div>
+              <h3 class="text-xl font-bold">Serafim </h3>
+              <p class="text-sm opacity-90">Serafim Beryl Theodora<br>SMA Kristen Petra 5</p>
+              <div class="flex items-center justify-center gap-4 mt-3 text-[color:var(--secondary)] text-xl">
+                <a href="https://instagram.com/" target="_blank" aria-label="Instagram"
+                  class="hover:text-[color:var(--hover-primary)] transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/" target="_blank" aria-label="Twitter/X"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-x-twitter"></i></a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-4 text-center fade-up">
+              <div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-3">
+                <img src="assets/img/stephanie.jpg" alt="Stephanie" class="w-full h-full object-cover pop-img">
+              </div>
+              <h3 class="text-xl font-bold">Stephanie</h3>
+              <p class="text-sm opacity-90">Stephanie Clarissa Suwarno<br>SMA Kristen Petra 5</p>
+              <div class="flex items-center justify-center gap-4 mt-3 text-[color:var(--secondary)] text-xl">
+                <a href="https://instagram.com/" target="_blank" aria-label="Instagram"
+                  class="hover:text-[color:var(--hover-primary)] transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/" target="_blank" aria-label="Twitter/X"
+                  class="hover:text-[color:var(--black-logo)] transition"><i class="fab fa-x-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-18">
+      <div class="max-w-5xl mx-auto px-4 md:px-6">
+        <div class="bg-white/60 glass p-6 rounded-xl shadow-sm text-center">
+          <h2 class="text-2xl font-bold mb-4">Behind the Project ✨</h2>
+          <p class="max-w-3xl mx-auto mb-4 leading-relaxed">
+            “Haciku” lahir dari keinginan kami untuk membantu generasi muda mengenali cara terbaik mereka untuk
+            memulihkan diri. Kami percaya setiap orang punya <em>healing culture</em> yang unik — dan memahami hal itu
+            bisa membuat hidup lebih seimbang dan bahagia.
+          </p>
+          <p class="max-w-2xl mx-auto">
+            Melalui proyek ini, kami ingin menghadirkan pengalaman interaktif yang tidak hanya indah secara visual,
+            tapi juga memberi makna dalam proses mengenali diri sendiri.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4 text-center text-sm text-[color:var(--text-heading)]/80">
+    © 2025 Haciku Team — Healing Culture Project
+  </footer>
+
+  <script>
+    const burgerAbout = document.getElementById('burgerAbout');
+    const mobileMenuAbout = document.getElementById('mobileMenuAbout');
+    const burgerIconAbout = document.getElementById('burgerIconAbout');
+    let menuOpenAbout = false;
+
+    burgerAbout.addEventListener('click', () => {
+      menuOpenAbout = !menuOpenAbout;
+      mobileMenuAbout.classList.toggle('hidden');
+      burgerIconAbout.innerHTML = menuOpenAbout
+        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
+        : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), 120 * i);
+      });
+    });
+  </script>
+</body>
+
+</html>
